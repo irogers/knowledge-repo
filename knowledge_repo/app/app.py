@@ -80,6 +80,7 @@ class KnowledgeFlask(Flask):
         logger.debug("Using database: {}".format(self.config['SQLALCHEMY_DATABASE_URI']))
 
         # Register database schema with flask app
+        self.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"pool_pre_ping": True}  
         sqlalchemy_db.init_app(self)
 
         # Set up database migration information
